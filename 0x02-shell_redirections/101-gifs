@@ -1,0 +1,2 @@
+#!/bin/bash
+sort (.([A-Za-z~][A-Za-z0-9~]*)? | wc [-clm]'*.gif' 
