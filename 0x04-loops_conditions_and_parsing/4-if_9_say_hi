@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Displays "Holberton School" 10 times, in 9th iter "Holberton School" and "Hi"
+count=0
+while [ $count -le 9 ]; do
+	echo "Holberton School"
+	if [ $count -eq 8 ]; then
+		echo "Hi"
+	fi
+	((count++))
+done
