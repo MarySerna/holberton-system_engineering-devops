@@ -6,7 +6,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 sudo service nginx start
 echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
-sed -i '/server_name _;/a rewrite ^/redirect_me{\nrewrite ^/(.*)$ https://www.google.com/ permanent;\n}\n' /etc/nginx/sites-available/default
+sed -i '43i location /redirect_me{\nrewrite ^/(.*)$ https://www.google.com/ permanent;\n}\n' /etc/nginx/sites-available/default
 sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 sed -i '46i error_page 404 /404.html;\nlocation = /404.html {\ninternal;\n}\n' /etc/nginx/sites-available/default
 sudo sed -i "22i add_header X-Served-By $HOSTNAME;\n" /etc/nginx/nginx.conf
