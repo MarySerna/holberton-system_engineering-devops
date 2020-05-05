@@ -3,9 +3,9 @@
 Extend your Python script to export data in the JSON format
 """
 
-import sys
 import json
 import requests
+import sys
 from sys import argv
 
 
