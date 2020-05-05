@@ -9,24 +9,21 @@ import requests
 from sys import argv
 
 
-if __name__ == "__main__":
-    """
-    Completes request with provided info
-    """
-    url = "https://jsonplaceholder.typicode.com"
-    emp_id = sys.argv[1]
-    emp_info = requests.get("{}/users/{}".format(url, emp_id)).json()
-    todo_dict = requests.get("{}/todos?userId={}".format
-                             (url, emp_id)).json()
-    empname = emp_info.get("name")
+if __name__ == '__main__':
+    userId = argv[1]
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
+                        format(userId), verify=False).json()
+    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
+                        format(userId), verify=False).json()
+    username = user.get('username')
     tasks = []
-    for task in todo_dict:
+    for task in todo:
         task_dict = {}
         task_dict["task"] = task.get('title')
         task_dict["completed"] = task.get('completed')
-        task_dict["username"] = empname
+        task_dict["username"] = username
         tasks.append(task_dict)
     jsonobj = {}
-    jsonobj[emp_id] = tasks
-    with open("{}.json".format(emp_id), 'w') as jsonfile:
+    jsonobj[userId] = tasks
+    with open("{}.json".format(userId), 'w') as jsonfile:
         json.dump(jsonobj, jsonfile)
